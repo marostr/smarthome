@@ -1,0 +1,13 @@
+package org.mortgages;
+
+import java.lang.Number;
+
+rule "Wylacz swiatlo"
+	dialect "mvel"
+	when
+		Pokoj( czujnikRuchu != null , czujnikRuchu.ruchWykryty == false , s : swiatlo != null , swiatlo.wlaczone == true )
+	then
+		modify( s ) {
+				setWlaczone( false )
+		}
+end

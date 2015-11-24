@@ -1,0 +1,14 @@
+package org.mortgages;
+
+import java.lang.Number;
+
+rule "Oswietlenie podjazdu"
+	dialect "mvel"
+	when
+		SwiatloPodjazdu( wlaczone == false )
+		CzujnikPodjazdu( wykrytyRuch == true )
+	then
+		SwiatloPodjazdu fact0 = new SwiatloPodjazdu();
+		fact0.setWlaczone( true );
+		insert( fact0 );
+end

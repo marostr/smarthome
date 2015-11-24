@@ -1,0 +1,17 @@
+package org.mortgages;
+
+import java.lang.Number;
+
+rule "Otworz brame"
+	dialect "mvel"
+	when
+		brama : Brama( otwarte == false )
+		exists (CzujnikPodjazdu( wykrytyRuch == true )) 
+	then
+		modify( brama ) {
+				setOtwarte( true )
+		}
+		Powiadomienie fact0 = new Powiadomienie();
+		fact0.setWiadomosc( "pojazd przy bramie" );
+		insert( fact0 );
+end

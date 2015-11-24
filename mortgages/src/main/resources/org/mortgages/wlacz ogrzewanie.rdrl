@@ -1,0 +1,14 @@
+package org.mortgages;
+
+import java.lang.Number;
+
+rule "wlacz ogrzewanie"
+	dialect "mvel"
+	when
+		Termometr( poraRoku == "zima" )
+		termostat : Termostat( temperatura < 17.5B , wlaczony == false )
+	then
+		modify( termostat ) {
+				setWlaczony( true )
+		}
+end

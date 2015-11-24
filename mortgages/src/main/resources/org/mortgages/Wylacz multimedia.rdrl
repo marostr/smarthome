@@ -1,0 +1,14 @@
+package org.mortgages;
+
+import java.lang.Number;
+
+rule "Wylacz multimedia"
+	dialect "mvel"
+	when
+		not (CzujnikRuchu( ruchWykryty == true )) 
+		um : UrzadzenieMultimedialne( wlaczone == true )
+	then
+		modify( um ) {
+				setWlaczone( false )
+		}
+end
